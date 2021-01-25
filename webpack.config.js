@@ -5,7 +5,10 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
-  entry: './index.js', 
+  entry: {
+    main: ['@babel/polyfill', './index.js'],
+    script: './script.js'
+  },
   output: { 
     path: path.resolve(__dirname, 'dist'), 
     filename: '[name].[contenthash].js',
@@ -29,6 +32,20 @@ module.exports = {
       {
       test: /\.(png|jpg|svg|gif)$/,
       use: ['file-loader']
+      },
+      {
+      test: /\.m?js$/,
+      exclude: /node_modules/,
+      use: {
+      loader: 'babel-loader',
+      options: {
+        presets: ['@babel/preset-env'],
+        plugins: [
+          '@babel/plugin-proposal-class-properties'
+        ]
+          }
+        }
+
       }
     ]
   }

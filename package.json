@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/Stanislav-dev-coder/Hello-React.git"
   },
+  "browserslist": "> 0.25%, not dead",
   "author": "User <user@mail.ru>",
   "license": "ISC",
   "bugs": {
@@ -19,6 +20,9 @@
   },
   "homepage": "https://github.com/Stanislav-dev-coder/Hello-React#readme",
   "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^5.0.1",
     "file-loader": "^6.2.0",
@@ -30,6 +34,7 @@
     "webpack-cli": "^4.4.0"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "normalize.css": "^8.0.1"
   }
 }
