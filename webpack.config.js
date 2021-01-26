@@ -2,6 +2,8 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
+const isDev = process.env.NODE_ENV === 'development'
+
 babelOptions = preset => {
   const opts = {
       presets: [
@@ -23,24 +25,28 @@ module.exports = {
   context: path.resolve(__dirname, 'src'),
   mode: 'development',
   entry: {
-    main: ['@babel/polyfill', './index.jsx'],
-    script: './script.js'
+    main: ['@babel/polyfill', './index.js']
   },
   output: { 
     path: path.resolve(__dirname, 'dist'), 
     filename: '[name].[contenthash].js',
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
   plugins: [
     new HTMLWebpackPlugin({
       template: './index.html'
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
   ],
   module: {
     rules: [
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        use: ['style-loader' ,'css-loader']
       },
       {
         test: /\.styl$/,
